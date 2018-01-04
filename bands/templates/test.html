@@ -1,0 +1,64 @@
+<html>
+<head>
+	<title>Create Account</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="gui/js/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="js/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+	<script>
+        function myFunction()
+        {
+            alert("Test button is clicked.");
+        }
+	</script>
+	{%load static %}
+
+	<link rel="stylesheet" type="text/css" href="{%static 'style.css'%}">
+    <script type="text/javascript" src="{%static 'check_form.js' %}"></script>
+	<style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+            }
+    </style>
+</head>
+<body>
+
+
+<div id="border1" style="width: 320px;height: 500px;position: absolute;top:0;bottom: 0;left: 0;right: 0;margin: auto;padding:0px 0px 0px 0px">
+
+    <div style="margin-left:30px;margin-top:20px;"><h3>Create account</h3></div>
+	<br>
+	<div class="container" style="margin:0px 0px 100px 17px;width:293.5px;">
+		<form method="POST" enctype="multipart/form-data" action="/bands/addUser/">
+			{% csrf_token %}
+            <div class="form-group">
+			<div class="row">
+				<input type="text" name="uname" id="uname" class="form-control col-sm-5" placeholder="Name" style="margin-left:15px;margin-right:5px;">
+				<input type="text" name="usurname" id="usurname" class="form-control col-sm-5" placeholder="Surname">
+			</div>
+            </div>
+		<div class="form-group">
+			<input type="text" class="form-control" name="uemail" id="uemail" placeholder="Enter Email" style="width:250px;">
+		</div>
+		<div class="form-group">
+			<input type="password" class="form-control" name="upassword" id="upassword" placeholder="Enter Password" style="width:250px;">
+		</div>
+		<div class="form-group">
+		<input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Re-enter Password" style="width:250px;">
+		</div>
+		<div class="form-group">
+		<input type="password" class="form-control" name="uphonenumber" id="uphonenumber" placeholder="Enter Mobile number" style="width:250px;">
+		</div>
+		<input type="submit" value="Create your account" name="register" class="btn btn-primary btn-block"  style="width:250px;margin-top:30px;"/><br>
+		<div style="margin-left:3px;">Already have an account? <a href="/bands/login">Sign in</a></div>
+		<button onclick="myFunction()"> This is a test button </button>
+</form>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<html lang="en">
+<head>
+    {%load static %}
+	<title>Add New Category</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="{% static 'jquery-3.2.1.slim.min.js' %}"></script>
+    <script src="{% static 'popper.min.js' %}"></script>
+    <script src="{% static 'pp.js' %}" ></script>
+    <script src="{% static 'bootstrap.min.js' %}" ></script>
+    <style>
+        body {
+              background: #f1f1f1;
+              font-family: 'Open Sans', sans-serif;
+              line-height: 1.8;
+            }
+    </style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="margin-bottom:10px;border-bottom: solid 1px #ddd;">
+        <a class="navbar-brand" href="#"><span style="margin-left:100px;">BuyNSell</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText" style="margin-left:100px;">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Admin Home<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <div align="right">
+          <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        </ul>
+        </div>
+      </div>
+    </nav>
+
+<div id="border1" align="center" style="margin-top:50px;">
+    <div class="container" style="width:700px;">
+        <form method="POST" action="/bands/savecategory ">
+            {% csrf_token %}
+            <label class="radio-inline"><input type="radio" name="optradio" checked="checked" value="existing" onchange="radio_function()">Add to Existing Category</label>
+            <label class="radio-inline"><input type="radio" name="optradio" onchange="radio_function()" value="new">Create New Category</label>
+            <div class="col-xs-12" style="height:10px;"></div>
+
+            <label for="cat_option">Select Existing Category:</label>
+            <select class="form-control" id="cat_option" name="cat_option" style="width:300px">
+                {% for cat in cats %}
+                <option value="{{cat.cat_name}}">{{cat.cat_name}}</option>
+                {% endfor %}
+            </select>
+            <div class="col-xs-12" style="height:10px;"></div>
+
+            <label>OR</label>
+            <input class="form-control" id="new_cat" name="new_cat" type="text" disabled="disabled" placeholder="New Category" style="width:300px">
+            <div class="col-xs-12" style="height:10px;"></div>
+
+            <input class="form-control" id="sub_cat" name="sub_cat" type="text" placeholder="Sub-Category" style="width:300px">
+            <div class="col-xs-12" style="height:15px;"></div>
+            <label style="margin-right:190px">Add Attribute:</label>
+
+            <div class="row" style="margin-left:185px;">
+                <div class="col-xs-6 text-left">
+                    <input type="text" name="attribute_name" id="attribute_name" class="form-control" placeholder="Attribute Name">
+                </div>
+                <div class="col-xs-6 text-right">
+                    <button type="button" onclick="add_att()" class="btn btn-primary" style="width:85px; margin-left:10px;">Add</button>
+                </div>
+            </div>
+            <div class="col-xs-12" style="height:10px;"></div>
+            <label for="delete_att" style="margin-right:165px">Remove Attribute</label>
+            <div class="row" style="margin-left:185px;">
+                <div class="col-xs-6 text-left">
+                    <select class="form-control" name="delete_att" id="delete_att" style="width:205px">
+                    </select>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <button type="button" onclick="del_att()" class="btn btn-primary" style="width:90px; margin-left:10px;">Delete</button>
+                </div>
+            </div>
+            <div class="col-xs-12" style="height:40px;"></div>
+            <input type="submit" value="Save" class="btn btn-primary" style="width:auto;"></input>
+        </form>
+
+    </div>
+</div>
+<script type="text/javascript">
+        function del_att()
+        {
+            var select=document.getElementById("delete_att");
+            var selected=select.options[select.selectedIndex];
+            selectedvalue=selected.value;
+            for (var i=0; i<select.length; i++){
+                if (select.options[i].value == selectedvalue)
+                select.remove(i);
+            }
+
+            $.post("/bands/deletefromsession/",{myvalue:selectedvalue}, function(response){
+                alert(response);
+                })
+        }
+
+        function add_att()
+        {
+            var att_name=document.getElementById("attribute_name");
+            var option=document.createElement("option");
+            if(att_name.value!="")
+            {
+                option.text=att_name.value;
+                option.value=att_name.value;
+                option.name=att_name.value;
+                var select=document.getElementById("delete_att");
+                select.appendChild(option);
+                $.post("/bands/addtosession/",{myvalue:option.value}, function(response){
+                    alert(response);
+                    })
+            }
+        }
+
+        function radio_function()
+        {
+            var dropdown=document.getElementById("cat_option");
+            var textbox=document.getElementById("new_cat");
+            if(dropdown.disabled)
+            {
+                textbox.value="";
+                dropdown.disabled=false;
+                textbox.disabled=true;
+            }
+            else
+            {
+                dropdown.value="";
+                dropdown.disabled=true;
+                textbox.disabled=false;
+            }
+        }
+</script>
+</body>
+</html>

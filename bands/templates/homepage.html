@@ -1,0 +1,150 @@
+<html>
+<head>
+  <title>Home</title>
+    {% load static %}
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet">
+    <script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <style>
+    button:hover
+    {
+        background-color:#6495ED;
+        border-width:0px;
+    }
+    .image {
+      opacity: 1;
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: .5s ease;
+      backface-visibility: hidden;
+    }
+    .image:hover{
+      opacity: 0.7;
+    }
+    .header {
+        background-color: #ddd;
+        padding: 20px;
+        text-align: center;
+    }
+    .container {
+      margin:0 auto; /* this will center the page */
+      width:1080px; /*  use your width here */
+    }
+
+    .container {
+      margin:0 auto; /* this will center the page */
+      width:1200px; /*  use your width here */
+    }
+
+    body {
+      background: #f1f1f1;
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.8;
+    }
+
+    .button-container {
+      width:680px;
+      background:white;
+      overflow-y: auto;
+    }
+
+    .image-center
+    {
+        border-radius:5px;
+        margin-top:15;
+        margin-left:23;
+        margin-bottom:10;
+        margin-right:0;
+        width:100;
+        height:100;
+    }
+
+    .button {
+      border-style: solid;
+      border-width:1px;
+      border-color:#ddd;
+      width:150px;
+      height:170px;
+      margin-right:10px;
+      margin-bottom:10px;
+      float:left;
+      background: #f1f1f1;
+    }
+    .footer
+    {
+      width:100%;
+      text-align: center;
+      margin-top: 20px;
+    }
+    </style>
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="margin-bottom:10px;border-bottom: solid 1px #ddd;">
+        <a class="navbar-brand" href="#"><span style="margin-left:100px;">BuyNSell</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText" style="margin-left:100px;">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+        <div align="right">
+          <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">My Account<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        </ul>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="navbar navbar-light justify-content-between">
+    <div class="container1" style="margin-left:80;">
+        <div style="margin-left:210px;margin-top:8px;">
+          <form class="form-inline">
+                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" style="width:300px;">
+                    <option selected value="all_india">All India</option>
+                    <option value="mumbai">Mumbai</option>
+                    <option value="surat">Surat</option>
+                    <option value="delhi">Delhi</option>
+                  </select>
+              <input class="form-control" type="search" placeholder="Search ads near you" aria-label="Search" style="width:300px;margin-left:5px;margin-right:5px;">
+            <button class="btn" style="margin-left:5px;border: solid 1px #ddd;width:100px;" type="submit">Search</button>
+                <button class="btn" style="margin-left:20px;border: solid 1px #ddd;width:200px;" id="submit_ad" name="submit_ad">Submit Ad</button>
+            </form>
+        </div>
+    </div>
+    </nav>
+
+  <div class="container" style="margin-top:20px;">
+    <!-- Python code here to add category from admin side -->
+  <div class="button-container" style="background: #f1f1f1;">
+      {% load static %}
+      {% for category in category_data %}
+        <a href="#" class="button image"><img src='{% static "images/dishapatani2.jpg" %}' class="image-center" alt="Fjords" ><div class="caption" style="margin-left:35px;">{{ category.cat_name }}</div></a>
+      {% endfor %}
+
+  </div>
+</div>
+<div class="footer">
+    {% load static %}
+  <img src='{% static "images/footer.png" %}' style="width:100%;">
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    {%load static %}
+	<title>Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="{% static 'jquery-3.2.1.slim.min.js' %}"></script>
+    <script src="{% static 'popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}" ></script>
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+            }
+    </style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-faded" style="background-color: 17a2b8;">
+  <a class="navbar-brand" style="color: fff" href="/bands/admin/">BuyNSell-Admin</a>
+</nav>
+{% for msg in msg_list %}
+    {{msg}}<br>
+{% endfor %}
+
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    {%load static %}
+	<title>Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="{% static 'jquery-3.2.1.slim.min.js' %}"></script>
+    <script src="{% static 'popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}" ></script>
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+            }
+    </style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-faded" style="background-color: 17a2b8;">
+  <a class="navbar-brand" style="color: fff" href="/bands/admin/">BuyNSell-Admin</a>
+</nav>
+<div id="border1" align="center" style="padding-top:180px">
+    <div class="container">
+        <a href="/bands/onaddCategoryclick" class="btn btn-primary" style="width: 200px;height: 40px;">Add Category</a>
+        <div class="col-xs-12" style="height:10px;"></div>
+        <a href="/bands/login/" class="btn btn-primary" style="width: 200px;height: 40px;">Delete Category</a>
+        <div class="col-xs-12" style="height:10px;"></div>
+        <a href="/bands/login/" class="btn btn-primary" style="width: 200px;height: 40px;">Delete Ad</a>
+        <div class="col-xs-12" style="height:10px;"></div>
+        <a href="/bands/login/" class="btn btn-primary" style="width: 200px;height: 40px;">Edit Profile</a>
+    </div>
+</div>
+</body>
+</html>
