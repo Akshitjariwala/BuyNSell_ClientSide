@@ -133,3 +133,8 @@ def ondeletecategoryclick(request):
     sub_cat=SubCategory.objects.all()
     att=Attributes.objects.all()
     return render(request,'deletecategory.html',{'cat':cat,'sub_cat':sub_cat,'att':att})
+	
+@csrf_exempt
+def delete_att(request):
+
+    return HttpResponse("Response..!!")

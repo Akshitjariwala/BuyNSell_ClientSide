@@ -13,5 +13,7 @@ urlpatterns = [
     url(r'^homepage/$',views.homepage,name="homepage"),
     url(r'^admin/$',views.admin,name='admin'),
     url(r'^addtosession/$',views.addtosession,name='addtosession'),
-    url(r'^deletefromsession/$',views.deletefromsession,name='deletefromsession')
+    url(r'^deletefromsession/$',views.deletefromsession,name='deletefromsession'),
+	url(r'^deletecategory/$',views.ondeletecategoryclick,name='ondeletecategoryclick'),
+    url(r'^delete_att/$',views.delete_att,name='delete_att')
 ]

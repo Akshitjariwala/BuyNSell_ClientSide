@@ -1,0 +1,188 @@
+<html lang="en">
+<head>
+    {%load static %}
+	<title>Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="{% static 'jquery-3.2.1.slim.min.js' %}"></script>
+    <script src="{% static 'popper.min.js' %}"></script>
+    <script src="{% static 'pp.js' %}" ></script>
+    <script src="{% static 'bootstrap.min.js' %}" ></script>
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+            }
+    </style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color:#22a5e0;margin-bottom:10px;border-bottom: solid 1px #ddd;">
+    <a class="navbar-brand" href="/bands/admin/"><span style="margin-left:100px;">BuyNSell</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText" style="margin-left:100px;">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/bands/admin/">Admin Home<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <div align="right">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+      </div>
+</nav>
+
+<div id="border1" align="center" style="padding-top:100px">
+    <div class="container" style="margin:0px 0px 100px 17px;width:700px;">
+        <label for="category" style="margin-right:165px">Categories:</label>
+        <div class="row" style="margin-left:185px;">
+            <div class="col-xs-6 text-left">
+                <select class="form-control" name="category" onchange="getsub_cat()" id="category" style="width:205px">
+                    <option value="">Select</option>
+                    {% for cat in cat %}
+                        <option value="{{cat.cat_name}}">{{cat.cat_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-xs-6 text-right">
+                <button type="button" onclick="" class="btn btn-primary" style="width:90px; margin-left:10px;">Delete</button>
+            </div>
+        </div>
+        <div class="col-xs-12" style="height:20px;"></div>
+
+        <label for="sub_category" style="margin-right:165px">Sub Categories:</label>
+        <div class="row" style="margin-left:185px;">
+            <div class="col-xs-6 text-left">
+                <select class="form-control" onchange="getatt()" name="sub_category" id="sub_category" style="width:205px">
+                </select>
+            </div>
+            <div class="col-xs-6 text-right">
+                <button type="button" onclick="" class="btn btn-primary" style="width:90px; margin-left:10px;">Delete</button>
+            </div>
+        </div>
+        <div class="col-xs-12" style="height:20px;"></div>
+
+        <label for="attributes" style="margin-right:165px">Attributes:</label>
+        <div class="row" style="margin-left:185px;">
+            <div class="col-xs-6 text-left">
+                <select class="form-control" name="attributes" id="attributes" style="width:205px">
+                </select>
+            </div>
+            <div class="col-xs-6 text-right">
+                <button type="button" onclick="delete_att()" class="btn btn-primary" style="width:90px; margin-left:10px;">Delete</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+        function getsub_cat()
+        {
+            var cat_dd=document.getElementById("category");
+            selectedcat=cat_dd.options[cat_dd.selectedIndex];
+            var subcat_dd=document.getElementById("sub_category");
+            var selected_cat_id;
+            {% for cat in cat %}
+                if("{{cat.cat_name}}" == selectedcat.value)
+                {
+                    selected_cat_id={{cat.cat_id}};
+                }
+            {% endfor %}
+            var x=0;
+            var subcat_name=[];
+            {% for sub_cat in sub_cat %}
+                if({{sub_cat.category_id}} == selected_cat_id)
+                {
+                    subcat_name.push("{{sub_cat.subcat_name}}");
+                    x++;
+                }
+            {% endfor %}
+            $('#sub_category').empty();
+            $('#attributes').empty();
+            if(selectedcat != null)
+            {
+                var y;
+                for(y=0;y<subcat_name.length;y++)
+                {
+                    var option=document.createElement("option");
+                    option.text=subcat_name[y];
+                    option.value=subcat_name[y];
+                    option.name=subcat_name[y];
+                    subcat_dd.appendChild(option);
+                }
+            }
+        }
+        function getatt()
+        {
+            var subcat_dd=document.getElementById("sub_category");
+            selected_subcat=subcat_dd.options[subcat_dd.selectedIndex];
+            var att_dd=document.getElementById("attributes");
+            var selected_subcat_id;
+            {% for sub_cat in sub_cat %}
+                if("{{sub_cat.subcat_name}}" == selected_subcat.value)
+                {
+                    selected_subcat_id={{sub_cat.subcat_id}};
+                }
+            {% endfor %}
+            var x=0;
+            var att_name=[];
+            {% for att in att %}
+                if({{att.subcategory_id}} == selected_subcat_id)
+                {
+                    att_name.push("{{att.attribute_name}}");
+                    x++;
+                }
+            {% endfor %}
+            $('#attributes').empty();
+            if(selected_subcat != null)
+            {
+                var y;
+                for(y=0;y<att_name.length;y++)
+                {
+                    var option=document.createElement("option");
+                    option.text=att_name[y];
+                    option.value=att_name[y];
+                    option.name=att_name[y];
+                    att_dd.appendChild(option);
+                }
+            }
+        }
+        function delete_att()
+        {
+            var att_dd=document.getElementById("attributes");
+            alert("selected_att_value: "+selected_att_value);
+            if(att_dd.selectedIndex==0)
+            {
+                var selected_att=att_dd.options[att_dd.selectedIndex];
+                var selected_att_value=selected_att.value;
+                $.post("/bands/delete_att/",{myvalue:selected_att_value}, function(response){
+                    alert(response);
+                    })
+                for(var i=0;i<att_dd.length;i++)
+                {
+                    if(att_dd.options[i].value==selected_att_value)
+                    {
+                        att_dd.remove(i);
+                    }
+                }
+            }
+            else
+            {
+                alert("Select proper value..!");
+            }
+        }
+</script>
+</body>
+</html>
