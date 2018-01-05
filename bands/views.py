@@ -119,8 +119,14 @@ def loginValidation(request):
     correct_password = user[0].user_password
 
     if password == correct_password:
-        successMessage = "You are successfully logged in."
-        return TemplateResponse(request, "homePage.html", {"Success": successMessage})
+        if email_id == 'admin@gmail.com':
+            return render(request, 'admin.html')
+        else:
+            successMessage = "You are successfully logged in."
+            return TemplateResponse(request, "homePage.html", {"Success": successMessage})
+    else:
+        errorMessage = "Invalid credentials inserted"
+        return TemplateResponse(request, "login.html", {"Success": errorMessage})
 
 def ondeletecategoryclick(request):
     cat=Category.objects.all()

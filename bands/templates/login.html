@@ -10,14 +10,25 @@
 	<script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-	<style>
+	<script type="text/javascript">window.setTimeout("document.getElementById('alert_div').style.display='none';", 3000);</script>
+    <style>
         body {
             font-family: 'Open Sans', sans-serif;
             line-height: 1.8;
             }
+
+        .alert
+        {
+        	transition: opacity 0.6s;
+        }
     </style>
 </head>
 <body>
+{% if Success %}
+	<div class="alert alert-danger" id="alert_div">
+		<strong>Danger!</strong>  {{Success}}
+	</div>
+{% endif %}
 <div id="border1" style="width: 320px;height: 400px;position: absolute;top:0;bottom: 0;left: 0;right: 0;margin: auto;padding-top:25px">
 	<div style="margin-left:30px;"><h3>Sign In</h3></div>
 	<br>
