@@ -31,10 +31,6 @@
         padding: 20px;
         text-align: center;
     }
-    .container {
-      margin:0 auto; /* this will center the page */
-      width:1080px; /*  use your width here */
-    }
 
     .container {
       margin:0 auto; /* this will center the page */
@@ -64,6 +60,12 @@
         height:100;
     }
 
+    .container-nav
+    {
+       margin:0 auto; /* this will center the page */
+       width:1200px; /*  use your width here */
+    }
+
     .button {
       border-style: solid;
       border-width:1px;
@@ -86,7 +88,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="margin-bottom:10px;border-bottom: solid 1px #ddd;">
-        <a class="navbar-brand" href="#"><span style="margin-left:100px;">BuyNSell</span></a>
+        <a class="navbar-brand" href="/bands/homepage"><span style="margin-left:100px;">BuyNSell</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -99,7 +101,7 @@
             <a class="nav-link" href="#">About</a>
           </li>
         </ul>
-        <div align="right">
+        <div>
           <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
@@ -112,12 +114,13 @@
         </div>
       </div>
     </nav>
-
-    <nav class="navbar navbar-light justify-content-between">
-    <div class="container1" style="margin-left:80;">
-        <div style="margin-left:210px;margin-top:8px;">
-          <form class="form-inline">
-                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" style="width:300px;">
+<div align="center">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-md-10 container-nav" style="margin-top:8px;">
+                <form class="form-inline">
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" style="width:300px;">
                     <option selected value="all_india">All India</option>
                     <option value="mumbai">Mumbai</option>
                     <option value="surat">Surat</option>
@@ -126,12 +129,13 @@
               <input class="form-control" type="search" placeholder="Search ads near you" aria-label="Search" style="width:300px;margin-left:5px;margin-right:5px;">
             <button class="btn" style="margin-left:5px;border: solid 1px #ddd;width:100px;" type="submit">Search</button>
                 <button class="btn" style="margin-left:20px;border: solid 1px #ddd;width:200px;" id="submit_ad" name="submit_ad">Submit Ad</button>
-            </form>
+                </form>
         </div>
-    </div>
+            <div class="col-sm-2"></div>
+        </div>
     </nav>
-
-  <div class="container" style="margin-top:20px;">
+</div>
+  <div class="container" align="center" style="margin-top:20px;">
     <!-- Python code here to add category from admin side -->
   <div class="button-container" style="background: #f1f1f1;">
       {% load static %}

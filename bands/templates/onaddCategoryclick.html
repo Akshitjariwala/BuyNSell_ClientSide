@@ -46,17 +46,17 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="margin-bottom:10px;border-bottom: solid 1px #ddd;">
-        <a class="navbar-brand" href="/bands/admin"><span style="margin-left:60px;">BuyNSell</span></a>
+         <a class="navbar-brand" href="/bands/admin"><span style="margin-left:100px;">BuyNSell</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText" style="margin-left:100px;">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="/bands/admin">Admin Home<span class="sr-only">(current)</span></a>
           </li>
         </ul>
-        <div align="right" style="margin-right:50px;">
+        <div>
           <ul class="navbar-nav mr-auto">
 
           <li class="nav-item active">
@@ -69,7 +69,8 @@
         </div>
       </div>
     </nav>
-<div class="container" style="margin-top:20px;margin-left:600px;">
+
+<div align="center" class="container" style="margin-top:20px;">
         <form method="POST" action="/bands/savecategory">
             {% csrf_token %}
             <label class="radio-inline" style="margin-right:10px;"><input type="radio" name="optradio" onchange="radio_function()" value="existing" checked="checked"><span style="margin-left:10px;">Add to Existing Category</span></label>
@@ -89,21 +90,21 @@
 
             <label style="margin-top:10px">Add Attribute:</label>
 
-                <div class="row" style="margin-left:0px;">
-                    <input type="text" name="attribute_name" style="width:300px;" id="attribute_name" class="form-control" placeholder="Attribute Name">
-                    <button type="button" onclick="add_att()" class="btn btn-primary" style="width:100px; margin-left:10px;">Add</button>
+                <div class="row" style="width:300;">
+                    <input type="text" name="attribute_name" style="width:220px;" id="attribute_name" class="form-control" placeholder="Attribute Name">
+                    <button type="button" onclick="add_att()" class="btn btn-primary" style="width:70px; margin-left:10px;">Add</button>
                 </div>
 
             <label for="delete_att" style="margin-top:10px">Remove Attribute</label>
 
-            <div class="row" style="margin-top:10px;margin-left:0px;">
-                    <select class="form-control" name="delete_att" id="delete_att" style="width:300px"></select>
-                    <button type="button" onclick="del_att()" class="btn btn-primary" style="width:100px; margin-left:10px;">Delete</button>
+            <div class="row" style="margin-top:10px;width:300;" align="center">
+                    <select class="form-control" name="delete_att" id="delete_att" style="width:220px"></select>
+                    <button type="button" onclick="del_att()" class="btn btn-primary" style="width:70px; margin-left:10px;">Delete</button>
             </div>
-            <div class="row" style="margin-left:0px;margin-top:10px;">
+            <div class="row" style="margin-top:10px;width:300;">
                 <div class="input-group" style="width:220px;margin-top:10px;">
                         <input type="text" class="form-control" placeholder="Add Category Icon" readonly></div>
-                    <label class="input-group-btn" style="margin-bottom:0px;margin-top:10;">
+                    <label class="input-group-btn" style="margin-bottom:0px;margin-top:10;width:70;">
                         <span class="btn btn-primary">
                             Browse<input type="file" style="display: none;" multiple>
                         </span>
