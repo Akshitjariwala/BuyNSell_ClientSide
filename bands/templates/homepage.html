@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet">
     <script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -137,7 +136,7 @@
   <div class="button-container" style="background: #f1f1f1;">
       {% load static %}
       {% for category in category_data %}
-        <a href="#" class="button image"><img src='{% static "images/dishapatani2.jpg" %}' class="image-center" alt="Fjords" ><div class="caption" style="margin-left:35px;">{{ category.cat_name }}</div></a>
+        <a href="#" class="button image"><img src='{% static "images/dishapatani2.jpg" %}' class="image-center" alt="Image not Available" ><div class="caption" style="margin-left:35px;">{{ category.cat_name }}</div></a>
       {% endfor %}
 
   </div>

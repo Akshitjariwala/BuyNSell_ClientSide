@@ -123,7 +123,7 @@ def loginValidation(request):
             return render(request, 'admin.html')
         else:
             successMessage = "You are successfully logged in."
-            return TemplateResponse(request, "homePage.html", {"Success": successMessage})
+            return homepage(request)
     else:
         errorMessage = "Invalid credentials inserted"
         return TemplateResponse(request, "login.html", {"Success": errorMessage})
